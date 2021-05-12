@@ -1,5 +1,5 @@
 import express from "express";
-import {assignments, displayAssignments} from "../models/assignment-db"
+import {assignments, overallAverage} from "../models/assignment-db"
 const routes = express.Router();
 
 routes.get("/api/assignments", (req, res) => {
@@ -8,7 +8,8 @@ routes.get("/api/assignments", (req, res) => {
 });
 
 routes.get("/api/summary", (req, res) => {
-    res.json()
+    res.json({overallAverage: overallAverage(assignments), assignments});
+    res.status(200);
 });
 
 export default routes;
